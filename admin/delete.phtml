@@ -3,15 +3,20 @@
 <input type="button" onclick="history.back()" style="color:#4C7CBD;font-size:0.9em;font-weight:bold;padding:1;" value="Go Back"><br/>
 <br/><br/>
 <div class="errors"><ul>
-
+ 
 <?php require 'dbconnect.php';
 if(isset($_POST['Delete']))
 {
-$courseId=$_POST['courseID'];
- $query1 = "delete from course_details where course_id='$courseId'"; 
- $query2 = "delete from course_schedule where course_id='$courseId'"; 
- $result1 = mysql_query($query1) or die(mysql_error()); 
-  $result2 = mysql_query($query2) or die(mysql_error()); 
+/*For Deleting the Entry from the database*/
+$courseI=$_POST['courseID'];
+ $query1 = "delete from course_details where course_id='$courseI'"; 
+ $query2 = "delete from course_schedule where course_id='$courseI'"; 
+ $query3 = "delete from alter_class where course_id='$courseI'"; 
+ $query4 = "delete from enrolled_details where course_id='$courseI'"; 
+ $result1 = mysql_query($query1); 
+  $result2 = mysql_query($query2); 
+  $result3 = mysql_query($query3);
+  $result4 = mysql_query($query4) ;
 }
 ?>
 <br><br><br>
