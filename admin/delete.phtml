@@ -1,0 +1,51 @@
+<!--Added Back Button-->
+<br/>
+<input type="button" onclick="history.back()" style="color:#4C7CBD;font-size:0.9em;font-weight:bold;padding:1;" value="Go Back"><br/>
+<br/><br/>
+<div class="errors"><ul>
+
+<?php require 'dbconnect.php';
+if(isset($_POST['Delete']))
+{
+$courseId=$_POST['courseID'];
+ $query1 = "delete from course_details where course_id='$courseId'"; 
+ $query2 = "delete from course_schedule where course_id='$courseId'"; 
+ $result1 = mysql_query($query1) or die(mysql_error()); 
+  $result2 = mysql_query($query2) or die(mysql_error()); 
+}
+?>
+<br><br><br>
+<h1>Delete Course </h1>
+<form name="add" action="#" method="post">
+    <fieldset>
+    <div id="left">
+  
+        <div class="field">
+             <label>Course ID</label> 
+             <?php 
+                        $query = "
+                                    SELECT course_name,course_id  
+                                    FROM  course_details
+                                    ";
+                        $result = mysql_query($query) or die(mysql_error());                     
+             ?>
+             
+             <select name="courseID" >
+             <?php                      
+                        while ($row = mysql_fetch_array($result))
+                        {
+                              echo "<option value=".$row['course_id']."> ". $row['course_id']."->". $row['course_name'] ."  </option>";
+                        }
+             ?>
+             </select> 
+             
+             <br>    
+        </div>
+        
+        <br>
+	</div>
+	<br/>
+	<label><input type="submit" name="Delete" value="Delete" class="Submit" onclick="confirm('Are You Sure You want to Delete this course')"/></label>
+	<br/>
+</form>
+	
