@@ -657,7 +657,7 @@ function class_details($con, $c_id, $from, $till) {
 function db_connect() {
     $host = "localhost";
     $user = "root";
-    $pass = "";
+    $pass = "abcd";
     $db = "new_fpa";
     $con = mysqli_connect($host, $user, $pass, $db);
 
